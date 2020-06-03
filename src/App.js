@@ -9,7 +9,7 @@ class App extends Component {
     }
 
     componentDidMount(){
-        fetch('http://acnhapi.com/v1a/fish/')
+        fetch('https://acnhapi.com/v1a/fish/')
         .then(res => {return res.json();})
         .then(json => {this.setState({ fish: json });})
         .catch(error => {console.log(error);});
