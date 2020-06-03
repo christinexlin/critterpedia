@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import SearchBar from './SearchBar';
 import List from './List';
+import './List.css';
 
 class FilteredList extends Component {
     constructor(props) {

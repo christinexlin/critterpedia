@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import FilteredList from './components/FilteredList';
 import './components/List.css';
-import Image from 'react-bootstrap/Image'
+import Image from 'react-bootstrap/Image';
+import blathers from './components/blathers.png';
 
 class App extends Component {
     state = {
@@ -17,18 +18,16 @@ class App extends Component {
 
     render() {
         return (
-        <div id="site">
-        <div id="app" class="container-fluid">
-        <div id="header" class="row">
+        <div id="app" className="container-fluid">
+        <div id="header" className="row">
             <h1 id="title">Blather's Critterpedia</h1>
         </div>
-        <div id="header" class="row">
+        {/*}
+        <div id="header" className="row">
             <h2 id="intro">What do you want to learn about today?</h2>
         </div>
-        <div class="row">
-            <FilteredList items={this.state.fish}/>
-         </div>
-         </div>
+        */}
+        <FilteredList items={this.state.fish}/>
          </div>
         );
     }

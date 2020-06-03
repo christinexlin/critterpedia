@@ -42,13 +42,11 @@ class SearchBar extends Component {
 
         return (
             <div>
-            <div class="row">
-            <input id="search" type="text" placeholder="Search"
-                value={this.props.filterText}
-                onChange={this.handleFilterText}
-            />
-            </div>
-            <div class="row">
+            <div className="row" id="searchdiv">
+
+<input id="searchbar" type="text" placeholder="Search" value={this.props.filterText} onChange={this.handleFilterText}/>
+</div>
+            <div className="row" id="buttonbar">
             <DropdownButton title="Rarity" id="dropdown-basic-button">
               <Dropdown.Item eventKey="All" onSelect={this.handleRarity}>All</Dropdown.Item>
               <Dropdown.Item eventKey="Common" onSelect={this.handleRarity}>Common</Dropdown.Item>
@@ -56,12 +54,12 @@ class SearchBar extends Component {
               <Dropdown.Item eventKey="Rare" onSelect={this.handleRarity}>Rare</Dropdown.Item>
               <Dropdown.Item eventKey="Ultra-rare" onSelect={this.handleRarity}>Ultra-rare</Dropdown.Item>
             </DropdownButton>
-
+{/*
             <ToggleButtonGroup  type="checkbox" onChange={this.handleRarityGroup}>
             <ToggleButton  className="filterButtons" value="Common">Common</ToggleButton>
             <ToggleButton className="filterButtons" value="Uncommon">Uncommon</ToggleButton>
             </ToggleButtonGroup>
-
+*/}
             <DropdownButton title="Location" id="dropdown-basic-button">
               <Dropdown.Item eventKey="All" onSelect={this.handleLocation}>All</Dropdown.Item>
               <Dropdown.Item eventKey="River" onSelect={this.handleLocation}>River</Dropdown.Item>
@@ -90,9 +88,7 @@ class SearchBar extends Component {
                 <Dropdown.Item eventKey="Descending" onSelect={this.handlePrice}>Highest to lowest</Dropdown.Item>
             </DropdownButton>
 
-
-
-            <Button variant="outline-primary" onClick={this.handleResetSearch}>Reset Search</Button>
+            <Button variant="outline-primary" id="resetbutton" onClick={this.handleResetSearch}>Reset Search</Button>
 </div>
              </div>
         );

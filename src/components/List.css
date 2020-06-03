@@ -2,16 +2,13 @@
     box-shadow: none;
 }
 
-#site {
+body {
     background-color: #FAFAFA;
+    /** cursor: url('./fishingrod.png'), auto; **/
 }
 
 #app {
     width: 80%;
-}
-
-#header {
-    align-content: flex-start;
 }
 
 #title {
@@ -19,6 +16,7 @@
     padding: 60px 20px 20px 20px;
     text-transform:uppercase;
     font-family: 'Rubik Mono One', sans-serif;
+    margin-left: -25px;
 }
 
 #intro {
@@ -26,6 +24,7 @@
     font-weight: bold;
     font-style: italic;
     font-size: 2.5rem;
+    margin-left: -9px;
 }
 
 #dropdown-basic-button {
@@ -33,14 +32,12 @@
     margin-right: 5px;
 }
 
-.list {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 20px 0px 20px 0px;
-    justify-content: center;
+#list {
+    margin-left: -23px;
+    margin-bottom: 60px;
 }
 
-.cardoriginal {
+.cardold {
     width: 15rem;
     margin: 10px 10px 10px 10px;
 }
@@ -64,48 +61,65 @@
     font-weight: bold;
 }
 
+.badgeold {
+    margin: 0px 5px 0px 0px;
+    background-color: #ABABAB;
+}
+
 .badge {
     margin: 0px 6px 0px 0px;
     color:black;
-    background-color: #EBF3F6;
+    background-color: white;
+    /*background-color: #EBF3F6;*/
     border: black solid 1px;
 }
 
-/* #Common {
-    background-color: #bbdefb;
+#searchdiv {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-#Uncommon {
-    background-color: #64b5f6;
+#searchbarold {
+    width: 660px;
+    font-size: 18px;
 }
 
-#River {
-    background-color: #1a237e;
-}
-
-#Pond {
-    background-color: #5c6bc0;
-}
-
-#Smallest {
-    background-color: #f8bbd0;
-} */
-
-#search {
-    width: 40%;
-    padding: 10px 30px 10px 30px;
-    margin: 10px;
+#searchbar {
+    width: 660px;
+    font-size: 30px;
+    padding: 5px 5px 5px 5px;
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 2px solid;
+    border-bottom: black solid 1px;
     outline: none;
+    background-color: #FAFAFA;
+    margin: 20px 0px 20px 0px;
+    font-family: 'Rubik Mono One', sans-serif;
 }
 
-#search[type=text] {
+#buttonbar {
+    margin: 10px 0px 20px -20px;
+}
+
+#dropdown-basic-button {
+    background-color: white;
+    color: black;
+    border-radius: 0px;
+    border: black solid 1px;
+}
+
+#resetbutton {
+    margin-left: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 0px;
+    border: black solid 1px;
+}
+
+#searchbar[type=text] {
   transition: width 0.4s ease-in-out;
 }
 
-#search[type=text]:focus {
-  width: 70%;
+#searchbar[type=text]:focus {
 }

@@ -87,10 +87,14 @@ class List extends Component {
         }
 
         if (myList.length === 0) {
-            results = <h2>No results available. Try another search?</h2>;
+            results = (
+                <div className="row">
+                <h2>No results available. Try another search?</h2>
+                </div>
+            );
         } else {
             results =
-            <div className="list">
+            <div className="row" id="list">
             {myList.map(item => {
                 return <div><Fish fish={item} key={item["file-name"]}/></div>
             })}
