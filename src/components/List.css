@@ -1,0 +1,111 @@
+.btn-primary.focus {
+    box-shadow: none;
+}
+
+#site {
+    background-color: #FAFAFA;
+}
+
+#app {
+    width: 80%;
+}
+
+#header {
+    align-content: flex-start;
+}
+
+#title {
+    font-size: 5rem;
+    padding: 60px 20px 20px 20px;
+    text-transform:uppercase;
+    font-family: 'Rubik Mono One', sans-serif;
+}
+
+#intro {
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 2.5rem;
+}
+
+#dropdown-basic-button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0px 20px 0px;
+    justify-content: center;
+}
+
+.cardoriginal {
+    width: 15rem;
+    margin: 10px 10px 10px 10px;
+}
+
+.card {
+    width: 15rem;
+    margin: 10px 10px 10px 10px;
+    background-color: white;
+    border: black solid 1px;
+    border-radius: 0px;
+}
+
+.card:hover {
+    background-color: #FFF89C;
+}
+
+.cardheader {
+    background-color: white;
+    border-bottom: 1px solid black;
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: bold;
+}
+
+.badge {
+    margin: 0px 6px 0px 0px;
+    color:black;
+    background-color: #EBF3F6;
+    border: black solid 1px;
+}
+
+/* #Common {
+    background-color: #bbdefb;
+}
+
+#Uncommon {
+    background-color: #64b5f6;
+}
+
+#River {
+    background-color: #1a237e;
+}
+
+#Pond {
+    background-color: #5c6bc0;
+}
+
+#Smallest {
+    background-color: #f8bbd0;
+} */
+
+#search {
+    width: 40%;
+    padding: 10px 30px 10px 30px;
+    margin: 10px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid;
+    outline: none;
+}
+
+#search[type=text] {
+  transition: width 0.4s ease-in-out;
+}
+
+#search[type=text]:focus {
+  width: 70%;
+}
