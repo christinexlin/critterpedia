@@ -8,43 +8,40 @@ class FilteredList extends Component {
         super(props);
         this.state = {
             filterText: '',
-            rarity:'All',
+            rarity: 'All',
             location: 'All',
             size: 'All',
             hemisphere: 'All',
-            rarityArray: ['Common','Uncommon'],
-            price: ''
+            price: '',
+            popup: false,
+            month: ''
         };
-        this.handleFilterText = this.handleFilterText.bind(this);
-        this.handleRarity = this.handleRarity.bind(this);
-        this.handleLocation = this.handleLocation.bind(this);
-        this.handleSize = this.handleSize.bind(this);
     }
 
-    handleFilterText(filterText) {this.setState({ filterText: filterText} );}
-    handleRarity(rarity) {this.setState({ rarity: rarity });}
-    handleLocation(location) {this.setState({ location: location });}
-    handleSize(size) {this.setState({ size: size });}
+    handleFilterText = (filterText) => {this.setState({ filterText: filterText} );}
 
+    handleRarity = (rarity) => {this.setState({rarity: rarity});}
+
+    handleLocation = (location) => {this.setState({ location: location });}
+    handleSize = (size) => {this.setState({ size: size });}
     handleHemisphere = (hemisphere) => {this.setState({ hemisphere: hemisphere});}
     handlePrice = (price) => {this.setState({ price: price });}
 
     handleResetSearch = () => {
         this.setState({
             filterText: '',
-            rarity:'All',
+            rarity: 'All',
             location: 'All',
             size: 'All',
             hemisphere: 'All',
-            rarityArray: ['Common','Uncommon'],
-            price: ''
+            price: '',
+            popup: false,
+            month: ''
         });
     }
 
-    handleRarityGroup = (valueArray) => {
-        this.setState({
-            rarityArray: valueArray
-        });
+    handleMonth = (month) => {
+        this.setState({month: month});
     }
 
     render() {
@@ -64,6 +61,11 @@ class FilteredList extends Component {
                 hemisphere={this.state.hemisphere}
                 onHemisphereChange={this.handleHemisphere}
                 onPriceChange={this.handlePrice}
+                onFishType={this.props.handleFishType}
+                onBugType={this.props.handleBugType}
+                type={this.props.type}
+                onMonthChange={this.handleMonth}
+                month={this.state.month}
             />
             <List
                 items={this.props.items}
@@ -74,6 +76,9 @@ class FilteredList extends Component {
                 size={this.state.size}
                 hemisphere={this.state.hemisphere}
                 price={this.state.price}
+                openPopup={this.onOpenPopup}
+                type={this.props.type}
+                month={this.state.month}
             />
         </div>
         );

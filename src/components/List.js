@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import Fish from './Fish';
+import Critter from './Critter';
 import './List.css';
+import { FaRegSadCry } from 'react-icons/fa';
 
 class List extends Component {
 
@@ -66,18 +67,25 @@ class List extends Component {
         }
     }
 
-    filterbyRarityGroup = item => {
-        if (this.props.rarityArray === ['Common','Uncommon']) {
+    filterbyMonth = item => {
+        if (item.availability.isAllYear) {
             return true;
+        }
+
+        if (this.props.hemisphere === 'All') {
+            return true;
+        } else if (this.props.hemisphere === 'Northern') {
+            return item.availability["month-array-northern"].includes(parseInt(this.props.month));
         } else {
-            return this.props.rarityArray.includes(item.availability.rarity);
+            return item.availability["month-array-southern"].includes(parseInt(this.props.month));
         }
     }
 
     render() {
         let results;
         let myList = this.props.items.filter(this.filterbySearch).filter(this.filterbyRarity)
-        .filter(this.filterbyLocation).filter(this.filterbySize).filter(this.filterbyHemisphere);
+        .filter(this.filterbyLocation).filter(this.filterbySize).filter(this.filterbyHemisphere)
+        .filter(this.filterbyMonth);
 
         if (this.props.price === 'Ascending') {
             myList.sort((a, b) => {return Number(a.price) - Number(b.price)});
@@ -88,15 +96,23 @@ class List extends Component {
 
         if (myList.length === 0) {
             results = (
-                <div className="row">
-                <h2>No results available. Try another search?</h2>
+                <div className="row no-results">
+                <h2>no results</h2>
+                <FaRegSadCry color='#C2BCB3' size='1.5em'
+                style={{margin: '5px 5px 0px 5px'}}/>
                 </div>
             );
         } else {
             results =
-            <div className="row" id="list">
+            <div className="row list">
             {myList.map(item => {
-                return <div><Fish fish={item} key={item["file-name"]}/></div>
+                return (
+                    <Critter
+                    critter={item}
+                    key={item["file-name"]}
+                    type={this.props.type}
+                    />
+                )
             })}
             </div>;
         }

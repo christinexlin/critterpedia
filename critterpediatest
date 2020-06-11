@@ -1,0 +1,47 @@
+<DropdownButton title="Rarity" id="dropdown-basic-button">
+
+  <InputGroup>
+  <InputGroup.Checkbox aria-label="Checkbox"
+  value="Common" onChange={this.handleRarity}/>
+  Common
+  </InputGroup>
+
+  <Dropdown.Item eventKey="Common" onSelect={this.handleRarity}>Common</Dropdown.Item>
+  <Dropdown.Item eventKey="Uncommon" onSelect={this.handleRarity}>Uncommon</Dropdown.Item>
+  <Dropdown.Item eventKey="Rare" onSelect={this.handleRarity}>Rare</Dropdown.Item>
+  <Dropdown.Item eventKey="Ultra-rare" onSelect={this.handleRarity}>Ultra-rare</Dropdown.Item>
+</DropdownButton>
+
+<DropdownButton title="size">
+<Dropdown.Item eventKey="All" onSelect={this.handleSize}>all</Dropdown.Item>
+  <Dropdown.Item eventKey="Smallest" onSelect={this.handleSize}>smallest</Dropdown.Item>
+  <Dropdown.Item eventKey="Small" onSelect={this.handleSize}>small</Dropdown.Item>
+  <Dropdown.Item eventKey="Medium" onSelect={this.handleSize}>medium</Dropdown.Item>
+  <Dropdown.Item eventKey="Large" onSelect={this.handleSize}>large</Dropdown.Item>
+  <Dropdown.Item eventKey="Largest" onSelect={this.handleSize}>largest</Dropdown.Item>
+</DropdownButton>
+
+
+let locationDropdown;
+if (this.props.type === 'fish') {
+    locationDropdown = (
+        <DropdownButton title="location">
+          <Dropdown.Item eventKey="All" onSelect={this.handleLocation}>all</Dropdown.Item>
+          <Dropdown.Item eventKey="River" onSelect={this.handleLocation}>river</Dropdown.Item>
+          <Dropdown.Item eventKey="Pond" onSelect={this.handleLocation}>pond</Dropdown.Item>
+          <Dropdown.Item eventKey="Sea" onSelect={this.handleLocation}>sea</Dropdown.Item>
+          <Dropdown.Item eventKey="Pier" onSelect={this.handleLocation}>pier</Dropdown.Item>
+        </DropdownButton>
+    );
+} else {
+    locationDropdown = (
+        <DropdownButton title="location">
+          <Dropdown.Item eventKey="All" onSelect={this.handleLocation}>all</Dropdown.Item>
+          <Dropdown.Item eventKey="Tree" onSelect={this.handleLocation}>tree</Dropdown.Item>
+          <Dropdown.Item eventKey="Flowers" onSelect={this.handleLocation}>flowers</Dropdown.Item>
+          <Dropdown.Item eventKey="Ground" onSelect={this.handleLocation}>ground</Dropdown.Item>
+          <Dropdown.Item eventKey="Flying" onSelect={this.handleLocation}>flying</Dropdown.Item>
+          <Dropdown.Item eventKey="Water" onSelect={this.handleLocation}>water</Dropdown.Item>
+        </DropdownButton>
+    );
+}

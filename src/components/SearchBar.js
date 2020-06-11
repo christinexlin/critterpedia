@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { DropdownButton, Dropdown, Button, ToggleButtonGroup, ToggleButton } from "react-bootstrap";
+import { DropdownButton, Dropdown, Button, ButtonGroup } from "react-bootstrap";
 import './List.css';
+import { FaFish, FaBug, FaRegSadCry, FaRegSmile } from 'react-icons/fa';
 
 class SearchBar extends Component {
     constructor(props) {
@@ -16,7 +17,7 @@ class SearchBar extends Component {
         this.props.onFilterTextChange(event.target.value.trim().toLowerCase());
     }
 
-    handleRarity(eventKey) {
+    handleRarity = (eventKey) => {
         this.props.onRarityChange(eventKey);
     }
 
@@ -36,61 +37,81 @@ class SearchBar extends Component {
 
     handlePrice = (eventKey) => {this.props.onPriceChange(eventKey);}
 
-    handleRarityGroup = (valueArray) => {this.props.onRarityGroupChange(valueArray);}
+    handleMonth = (eventKey) => {
+        if (this.props.hemisphere === 'All') {
+            alert("Select a hemisphere first!");
+        }
+        this.props.onMonthChange(eventKey);
+    }
 
     render() {
 
         return (
             <div>
-            <div className="row" id="searchdiv">
 
-<input id="searchbar" type="text" placeholder="Search" value={this.props.filterText} onChange={this.handleFilterText}/>
-</div>
-            <div className="row" id="buttonbar">
-            <DropdownButton title="Rarity" id="dropdown-basic-button">
-              <Dropdown.Item eventKey="All" onSelect={this.handleRarity}>All</Dropdown.Item>
-              <Dropdown.Item eventKey="Common" onSelect={this.handleRarity}>Common</Dropdown.Item>
-              <Dropdown.Item eventKey="Uncommon" onSelect={this.handleRarity}>Uncommon</Dropdown.Item>
-              <Dropdown.Item eventKey="Rare" onSelect={this.handleRarity}>Rare</Dropdown.Item>
-              <Dropdown.Item eventKey="Ultra-rare" onSelect={this.handleRarity}>Ultra-rare</Dropdown.Item>
-            </DropdownButton>
-{/*
-            <ToggleButtonGroup  type="checkbox" onChange={this.handleRarityGroup}>
-            <ToggleButton  className="filterButtons" value="Common">Common</ToggleButton>
-            <ToggleButton className="filterButtons" value="Uncommon">Uncommon</ToggleButton>
-            </ToggleButtonGroup>
-*/}
-            <DropdownButton title="Location" id="dropdown-basic-button">
-              <Dropdown.Item eventKey="All" onSelect={this.handleLocation}>All</Dropdown.Item>
-              <Dropdown.Item eventKey="River" onSelect={this.handleLocation}>River</Dropdown.Item>
-              <Dropdown.Item eventKey="Pond" onSelect={this.handleLocation}>Pond</Dropdown.Item>
-              <Dropdown.Item eventKey="Sea" onSelect={this.handleLocation}>Sea</Dropdown.Item>
-              <Dropdown.Item eventKey="Pier" onSelect={this.handleLocation}>Pier</Dropdown.Item>
-            </DropdownButton>
+            <div className="row filter-bar" style={{width: '65%', margin: 'auto'}}>
 
-            <DropdownButton title="Size" id="dropdown-basic-button">
-            <Dropdown.Item eventKey="All" onSelect={this.handleSize}>All</Dropdown.Item>
-              <Dropdown.Item eventKey="Smallest" onSelect={this.handleSize}>Smallest</Dropdown.Item>
-              <Dropdown.Item eventKey="Small" onSelect={this.handleSize}>Small</Dropdown.Item>
-              <Dropdown.Item eventKey="Medium" onSelect={this.handleSize}>Medium</Dropdown.Item>
-              <Dropdown.Item eventKey="Large" onSelect={this.handleSize}>Large</Dropdown.Item>
-              <Dropdown.Item eventKey="Largest" onSelect={this.handleSize}>Largest</Dropdown.Item>
-            </DropdownButton>
+            <div className="col-lg-6">
+                    <ButtonGroup>
+                    <div className="face">{this.props.type === 'fish' ? <FaRegSmile /> : <FaRegSadCry />}</div>
+                    <h6 id="type">type:</h6>
+                    <Button
+                    style={{borderRadius: '0px'}}
+                    active={this.props.type === 'fish' ? true : false}
+                    onClick={this.props.onFishType}><FaFish className='icon'/> fish
+                    </Button>
+                    <Button
+                    active={this.props.type === 'bugs' ? true : false}
+                    onClick={this.props.onBugType}><FaBug size='0.9em' className='icon'/> bugs
+                    </Button>
+                    </ButtonGroup>
+            </div>
 
-            <DropdownButton title="Hemisphere" id="dropdown-basic-button">
-                <Dropdown.Item eventKey="All" onSelect={this.handleHemisphere}>All</Dropdown.Item>
-                <Dropdown.Item eventKey="Northern" onSelect={this.handleHemisphere}>Northern</Dropdown.Item>
-                <Dropdown.Item eventKey="Southern" onSelect={this.handleHemisphere}>Southern</Dropdown.Item>
+                    <div className="col-lg-6">
+                    <input type="text" placeholder="search" value={this.props.filterText} onChange={this.handleFilterText}/>
+                    </div>
+
+            </div>
+
+
+            <div className="row filter-bar">
+            <DropdownButton title="rarity">
+            <Dropdown.Item eventKey="All" onSelect={this.handleRarity}>all</Dropdown.Item>
+              <Dropdown.Item eventKey="Common" onSelect={this.handleRarity}>common</Dropdown.Item>
+              <Dropdown.Item eventKey="Uncommon" onSelect={this.handleRarity}>uncommon</Dropdown.Item>
+              <Dropdown.Item eventKey="Rare" onSelect={this.handleRarity}>rare</Dropdown.Item>
+              <Dropdown.Item eventKey="Ultra-rare" onSelect={this.handleRarity}>ultra-rare</Dropdown.Item>
             </DropdownButton>
 
-            <DropdownButton title="Sort by price" id="dropdown-basic-button">
-                <Dropdown.Item eventKey="Ascending" onSelect={this.handlePrice}>Lowest to highest</Dropdown.Item>
-                <Dropdown.Item eventKey="Descending" onSelect={this.handlePrice}>Highest to lowest</Dropdown.Item>
+            <DropdownButton title="hemisphere">
+                <Dropdown.Item eventKey="Northern" onSelect={this.handleHemisphere}>northern</Dropdown.Item>
+                <Dropdown.Item eventKey="Southern" onSelect={this.handleHemisphere}>southern</Dropdown.Item>
             </DropdownButton>
 
-            <Button variant="outline-primary" id="resetbutton" onClick={this.handleResetSearch}>Reset Search</Button>
-</div>
-             </div>
+            <DropdownButton title="month">
+                <Dropdown.Item eventKey="1" onSelect={this.handleMonth}>january</Dropdown.Item>
+                <Dropdown.Item eventKey="2" onSelect={this.handleMonth}>february</Dropdown.Item>
+                <Dropdown.Item eventKey="3" onSelect={this.handleMonth}>march</Dropdown.Item>
+                <Dropdown.Item eventKey="4" onSelect={this.handleMonth}>april</Dropdown.Item>
+                <Dropdown.Item eventKey="5" onSelect={this.handleMonth}>may</Dropdown.Item>
+                <Dropdown.Item eventKey="6" onSelect={this.handleMonth}>june</Dropdown.Item>
+                <Dropdown.Item eventKey="7" onSelect={this.handleMonth}>july</Dropdown.Item>
+                <Dropdown.Item eventKey="8" onSelect={this.handleMonth}>august</Dropdown.Item>
+                <Dropdown.Item eventKey="9" onSelect={this.handleMonth}>september</Dropdown.Item>
+                <Dropdown.Item eventKey="10" onSelect={this.handleMonth}>october</Dropdown.Item>
+                <Dropdown.Item eventKey="11" onSelect={this.handleMonth}>november</Dropdown.Item>
+                <Dropdown.Item eventKey="12" onSelect={this.handleMonth}>december</Dropdown.Item>
+            </DropdownButton>
+
+            <DropdownButton title="sort by price">
+                <Dropdown.Item eventKey="Ascending" onSelect={this.handlePrice}>lowest to highest</Dropdown.Item>
+                <Dropdown.Item eventKey="Descending" onSelect={this.handlePrice}>highest to lowest</Dropdown.Item>
+            </DropdownButton>
+
+            <Button variant="outline-primary" id="resetbutton" onClick={this.handleResetSearch}>reset search</Button>
+            </div>
+
+    </div>
         );
     }
 }
