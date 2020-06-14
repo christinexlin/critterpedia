@@ -45,3 +45,502 @@ if (this.props.type === 'fish') {
         </DropdownButton>
     );
 }
+
+-----
+
+handleLocation(eventKey) {
+    this.props.onLocationChange(eventKey);
+}
+
+handleSize(eventKey) {
+    this.props.onSizeChange(eventKey);
+}
+
+handleResetSearch() {
+    this.props.onResetSearch();
+}
+
+handleHemisphere = (eventKey) => {this.props.onHemisphereChange(eventKey);}
+
+handlePrice = (eventKey) => {this.props.onPriceChange(eventKey);}
+
+handleMonth = (eventKey) => {
+    if (this.props.hemisphere === 'All') {
+        alert("Select a hemisphere first!");
+    }
+    this.props.onMonthChange(eventKey);
+}
+
+
+----
+FilterList.js
+
+
+handleLocation = (location) => {this.setState({ location: location });}
+handleSize = (size) => {this.setState({ size: size });}
+handleHemisphere = (hemisphere) => {this.setState({ hemisphere: hemisphere});}
+handlePrice = (price) => {this.setState({ price: price });}
+
+handleResetSearch = () => {
+    this.setState({
+        filterText: '',
+        rarity: 'All',
+        location: 'All',
+        size: 'All',
+        hemisphere: 'All',
+        price: '',
+        popup: false,
+        month: ''
+    });
+}
+
+handleMonth = (month) => {
+    this.setState({month: month});
+}
+
+---
+
+<div className="filter-bar">
+
+<div className="row" style={{width: '65%', margin: 'auto'}}>
+
+<div className="col-lg-6">
+        <ButtonGroup>
+        <div className="face">{this.props.type === 'fish' ? <FaRegSmile /> : <FaRegSadCry />}</div>
+        <h6 id="type">type:</h6>
+        <Button
+        style={{borderRadius: '0px'}}
+        active={this.props.type === 'fish' ? true : false}
+        onClick={this.props.onFishType}><FaFish className='icon'/> fish
+        </Button>
+        <Button
+        active={this.props.type === 'bugs' ? true : false}
+        onClick={this.props.onBugType}><FaBug size='0.9em' className='icon'/> bugs
+        </Button>
+        </ButtonGroup>
+</div>
+
+        <div className="col-lg-6">
+        <input type="text" placeholder="search" value={this.props.filterText} onChange={this.handleFilterText}/>
+        </div>
+
+</div>
+
+
+<div className="row filter-bar">
+<DropdownButton title="rarity">
+<Dropdown.Item eventKey="All" onSelect={this.handleRarity}>all</Dropdown.Item>
+  <Dropdown.Item eventKey="Common" onSelect={this.handleRarity}>common</Dropdown.Item>
+  <Dropdown.Item eventKey="Uncommon" onSelect={this.handleRarity}>uncommon</Dropdown.Item>
+  <Dropdown.Item eventKey="Rare" onSelect={this.handleRarity}>rare</Dropdown.Item>
+  <Dropdown.Item eventKey="Ultra-rare" onSelect={this.handleRarity}>ultra-rare</Dropdown.Item>
+</DropdownButton>
+
+<DropdownButton title="hemisphere">
+    <Dropdown.Item eventKey="Northern" onSelect={this.handleHemisphere}>northern</Dropdown.Item>
+    <Dropdown.Item eventKey="Southern" onSelect={this.handleHemisphere}>southern</Dropdown.Item>
+</DropdownButton>
+
+<DropdownButton title="month">
+    <Dropdown.Item eventKey="1" onSelect={this.handleMonth}>january</Dropdown.Item>
+    <Dropdown.Item eventKey="2" onSelect={this.handleMonth}>february</Dropdown.Item>
+    <Dropdown.Item eventKey="3" onSelect={this.handleMonth}>march</Dropdown.Item>
+    <Dropdown.Item eventKey="4" onSelect={this.handleMonth}>april</Dropdown.Item>
+    <Dropdown.Item eventKey="5" onSelect={this.handleMonth}>may</Dropdown.Item>
+    <Dropdown.Item eventKey="6" onSelect={this.handleMonth}>june</Dropdown.Item>
+    <Dropdown.Item eventKey="7" onSelect={this.handleMonth}>july</Dropdown.Item>
+    <Dropdown.Item eventKey="8" onSelect={this.handleMonth}>august</Dropdown.Item>
+    <Dropdown.Item eventKey="9" onSelect={this.handleMonth}>september</Dropdown.Item>
+    <Dropdown.Item eventKey="10" onSelect={this.handleMonth}>october</Dropdown.Item>
+    <Dropdown.Item eventKey="11" onSelect={this.handleMonth}>november</Dropdown.Item>
+    <Dropdown.Item eventKey="12" onSelect={this.handleMonth}>december</Dropdown.Item>
+</DropdownButton>
+
+<DropdownButton title="sort by price">
+    <Dropdown.Item eventKey="Ascending" onSelect={this.handlePrice}>lowest to highest</Dropdown.Item>
+    <Dropdown.Item eventKey="Descending" onSelect={this.handlePrice}>highest to lowest</Dropdown.Item>
+</DropdownButton>
+
+<Button variant="outline-primary" id="resetbutton" onClick={this.handleResetSearch}>RESET SEARCH</Button>
+</div>
+
+</div>
+
+----
+
+List.js
+
+filterbyLocation = item => {
+    if (this.props.location === 'All') {
+        return true;
+    } else if (this.props.location === 'River') {
+        return item.availability.location.includes('River');
+    } else if (this.props.location === 'Pond') {
+        return item.availability.location.includes('Pond');
+    } else if (this.props.location === 'Sea') {
+        return item.availability.location.includes('Sea');
+    } else {
+        return item.availability.location === this.props.location;
+    }
+}
+
+filterbySize = item => {
+    if (this.props.size === 'All') {
+        return true;
+    }
+    switch (this.props.size) {
+        case 'Smallest':
+            return item.shadow === 'Smallest (1)';
+        case 'Small':
+            return item.shadow === 'Small (2)';
+        case 'Medium':
+            return item.shadow === 'Medium (3)' || item.shadow === 'Medium (4)' || item.shadow === 'Medium with fin (4)';
+        case 'Large':
+            return item.shadow === 'Large (5)';
+        case 'Largest':
+            return item.shadow === 'Largest (6)' || item.shadow === 'Largest with fin (6)';
+        default:
+            return true;
+    }
+}
+
+---
+
+TYPE BUTTON bar
+<ButtonGroup className="type-bar">
+    <Button active={this.props.type === 'fish'}
+    value="fish"
+    onClick={this.handleTypeChange}>
+        <FaFish className='icon'/> FISH
+    </Button>
+    <Button active={this.props.type === 'bugs'}
+    value="bugs"
+    onClick={this.handleTypeChange}>
+        <FaBug size='0.9em' className='icon'/> BUGS
+    </Button>
+</ButtonGroup>
+
+
+----
+
+
+@font-face {
+    font-family: 'Carters Display';
+    src: local('Carters Display'), url(../fonts/CartersDisplay.ttf) format('ttf');
+}
+
+.btn {
+    font-family: 'Inknut Antiqua', serif;
+}
+.btn-primary:not(:disabled):not(.disabled).active {
+    background-color: #C2BCB3;
+    color: black;
+    border-bottom: black solid 2px;
+}
+
+.btn:active {
+    background-color: black !important;
+    color: #ECE8E2 !important;
+}
+
+
+
+h1, h2, h4, h6 {
+    font-family: 'Inknut Antiqua', serif;
+}
+
+.critter-name {
+    font-weight: bold;
+}
+
+h2 {
+    color: #C2BCB3;
+}
+
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#type {
+    background-color: #D8D1C7;
+    padding: 6px 8px 6px 6px;
+    margin-bottom: 0px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+
+#footer a {
+    color: black;
+}
+
+
+
+
+
+
+
+
+.face {
+    background-color: #D8D1C7;
+    padding: 6px 0px 6px 10px;
+    border-radius: .25rem 0px 0px .25rem;
+}
+
+.face svg {
+    margin-top: -4px;
+}
+
+.icon {
+    margin-right: 5px;
+}
+
+.catch.card {
+    border: solid black 2px;
+    border-radius: 0px;
+}
+
+.btn-group {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+
+.btn-primary:hover {
+    background-color: black;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    color: #ECE8E2;
+}
+
+#intro {
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 2.5rem;
+    margin-left: -9px;
+}
+
+#dropdown-basic-button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.list {
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+
+
+.fish-image {
+    margin: auto;
+    padding-bottom: 10px;
+}
+
+.card-bug {
+    padding-left: 10px;
+    padding-right:10px;
+}
+
+
+.cardheader {
+    font-family: 'Nanum Myeongjo', serif;
+    background-color: #ECE8E2;
+    border: none;
+    display: none;
+}
+
+.card-header {
+    background-color: #ECE8E2;
+    border-bottom: black solid 2px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+input {
+    padding: 5px 10px 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #D8D1C7;
+    outline: none;
+    font-family: 'Carters Display';
+    width: 250px;
+}
+
+input:focus {
+    background-color: #C2BCB3;
+}
+
+#buttonbar {
+    margin: 10px 0px 20px -20px;
+    display: none;
+}
+
+#dropdown-basic-button {
+    background-color: white;
+    color: black;
+    border-radius: 0px;
+    border: black solid 1px;
+    font-family: 'Nanum Myeongjo', serif;
+}
+
+#resetbutton {
+    background-color: black;
+    color: #ECE8E2;
+    border: none;
+    margin: 0px 15px 10px 15px;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+#searchbar[type=text] {
+  transition: width 0.4s ease-in-out;
+}
+
+#searchbar[type=text]:focus {
+}
+
+.modal-content {
+    border: none;
+    background-color: #ECE8E2;
+    max-width: 800px;
+    justify-content: flex-start;
+}
+
+.popup-description {
+    background-color: #D8D1C7;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding: 20px 20px 15px 20px;
+}
+
+.modal-content .col-lg-4 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.modal-img {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-content: center;
+    padding: 15px 15px 15px 15px;
+}
+
+.modal-body h4 {
+    padding-top: 10px;
+    margin-bottom: 2px;
+}
+
+.modal-body h6 {
+    margin-bottom: 0px;
+}
+
+
+.popup-info-row {
+    background-color: #D8D1C7;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0px 0px 0px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.popup-info-subrow {
+    padding: 0px 0px 5px 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    align-content: center;
+}
+
+.catchphrase {
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.subrow-top {
+    border-radius: 5px 5px 0px 0px;
+    padding-bottom: 0px;
+}
+
+.subrow-bottom {
+    border-radius: 0px 0px 5px 5px;
+
+}
+
+#popup-header {
+    margin-bottom: 8px;
+}
+
+#popup-information {
+    display: inline-block;
+    flex-wrap: nowrap;
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.popup-header {
+    display: inline-block;
+    flex-wrap: nowrap;
+}
+#notes {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#notes svg {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+.subtitle {
+    padding-right: 20px;
+    margin-top: -3px;
+    padding-left: 3px;
+}
+
+.filter-bar {
+    padding-bottom: 20px;
+    justify-content: center;
+}
+
+.col-lg-6 {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding-bottom: 10px;
+}
+
+.dropdown {
+    margin: 0px 10px 10px 10px;
+}
+
+.show .btn {
+    background-color: black !important;
+    color: #ECE8E2 !important;
+}
+
+.dropdown-menu {
+    font-family: 'Carters Display';
+    background-color: #D8D1C7;
+    border: #D8D1C7 solid 1px;
+}
+
+.no-results {
+    justify-content: center;
+    padding-top: 20px;
+}

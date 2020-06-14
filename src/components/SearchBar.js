@@ -1,117 +1,83 @@
 import React, { Component } from 'react';
-import { DropdownButton, Dropdown, Button, ButtonGroup } from "react-bootstrap";
+import { DropdownButton, Dropdown, Button, ButtonGroup, ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 import './List.css';
-import { FaFish, FaBug, FaRegSadCry, FaRegSmile } from 'react-icons/fa';
+import FilterMenu from './FilterMenu';
 
 class SearchBar extends Component {
     constructor(props) {
         super(props);
-        this.handleFilterText = this.handleFilterText.bind(this);
-        this.handleRarity = this.handleRarity.bind(this);
-        this.handleLocation = this.handleLocation.bind(this);
-        this.handleSize = this.handleSize.bind(this);
-        this.handleResetSearch = this.handleResetSearch.bind(this);
+        this.state = {
+            selectedMenu: 'none'
+        }
     }
 
-    handleFilterText(event) {
+    onMenuChange = (event) => {
+        this.state.selectedMenu === event.target.value ?
+        this.setState({selectedMenu: 'none'}) :
+        this.setState({selectedMenu: event.target.value});
+    }
+
+    handleFilterText = (event) => {
         this.props.onFilterTextChange(event.target.value.trim().toLowerCase());
     }
-
-    handleRarity = (eventKey) => {
-        this.props.onRarityChange(eventKey);
+    handleRarity = (value) => {
+        this.props.onRarityChange(value);
     }
-
-    handleLocation(eventKey) {
-        this.props.onLocationChange(eventKey);
+    handleHemisphere = () => {
+        this.props.onHemisphereChange();
     }
-
-    handleSize(eventKey) {
-        this.props.onSizeChange(eventKey);
+    handleMonth = (value) => {
+        this.props.onMonthChange(value);
     }
-
-    handleResetSearch() {
-        this.props.onResetSearch();
-    }
-
-    handleHemisphere = (eventKey) => {this.props.onHemisphereChange(eventKey);}
-
-    handlePrice = (eventKey) => {this.props.onPriceChange(eventKey);}
-
-    handleMonth = (eventKey) => {
-        if (this.props.hemisphere === 'All') {
-            alert("Select a hemisphere first!");
-        }
-        this.props.onMonthChange(eventKey);
+    handleTypeChange = () => {
+        this.props.onTypeChange();
     }
 
     render() {
-
         return (
             <div>
 
-            <div className="row filter-bar" style={{width: '65%', margin: 'auto'}}>
 
-            <div className="col-lg-6">
-                    <ButtonGroup>
-                    <div className="face">{this.props.type === 'fish' ? <FaRegSmile /> : <FaRegSadCry />}</div>
-                    <h6 id="type">type:</h6>
-                    <Button
-                    style={{borderRadius: '0px'}}
-                    active={this.props.type === 'fish' ? true : false}
-                    onClick={this.props.onFishType}><FaFish className='icon'/> fish
-                    </Button>
-                    <Button
-                    active={this.props.type === 'bugs' ? true : false}
-                    onClick={this.props.onBugType}><FaBug size='0.9em' className='icon'/> bugs
-                    </Button>
-                    </ButtonGroup>
-            </div>
+            <div className="row filter-bar top-button-bar">
+            <Button onClick={this.handleTypeChange}>
+            <span className="emoji" role="img" aria-label="fish">
+            {this.props.type === 'fish' ? String.fromCodePoint('0x1F41F') : String.fromCodePoint('0x1F41C')}
+            </span>
+            {this.props.type.toUpperCase()}
+            </Button>
 
-                    <div className="col-lg-6">
-                    <input type="text" placeholder="search" value={this.props.filterText} onChange={this.handleFilterText}/>
-                    </div>
+            <Button onClick={this.handleHemisphere} value={this.props.hemisphere}>
+            <span className="emoji" role="img" aria-label="ant">
+            {String.fromCodePoint('0x1F4CD')}
+            </span>
+            {this.props.hemisphere.toUpperCase()} HEMISPHERE
+            </Button>
+
+            <input type="text" placeholder="SEARCH" value={this.props.filterText} onChange={this.handleFilterText}/>
 
             </div>
-
 
             <div className="row filter-bar">
-            <DropdownButton title="rarity">
-            <Dropdown.Item eventKey="All" onSelect={this.handleRarity}>all</Dropdown.Item>
-              <Dropdown.Item eventKey="Common" onSelect={this.handleRarity}>common</Dropdown.Item>
-              <Dropdown.Item eventKey="Uncommon" onSelect={this.handleRarity}>uncommon</Dropdown.Item>
-              <Dropdown.Item eventKey="Rare" onSelect={this.handleRarity}>rare</Dropdown.Item>
-              <Dropdown.Item eventKey="Ultra-rare" onSelect={this.handleRarity}>ultra-rare</Dropdown.Item>
-            </DropdownButton>
-
-            <DropdownButton title="hemisphere">
-                <Dropdown.Item eventKey="Northern" onSelect={this.handleHemisphere}>northern</Dropdown.Item>
-                <Dropdown.Item eventKey="Southern" onSelect={this.handleHemisphere}>southern</Dropdown.Item>
-            </DropdownButton>
-
-            <DropdownButton title="month">
-                <Dropdown.Item eventKey="1" onSelect={this.handleMonth}>january</Dropdown.Item>
-                <Dropdown.Item eventKey="2" onSelect={this.handleMonth}>february</Dropdown.Item>
-                <Dropdown.Item eventKey="3" onSelect={this.handleMonth}>march</Dropdown.Item>
-                <Dropdown.Item eventKey="4" onSelect={this.handleMonth}>april</Dropdown.Item>
-                <Dropdown.Item eventKey="5" onSelect={this.handleMonth}>may</Dropdown.Item>
-                <Dropdown.Item eventKey="6" onSelect={this.handleMonth}>june</Dropdown.Item>
-                <Dropdown.Item eventKey="7" onSelect={this.handleMonth}>july</Dropdown.Item>
-                <Dropdown.Item eventKey="8" onSelect={this.handleMonth}>august</Dropdown.Item>
-                <Dropdown.Item eventKey="9" onSelect={this.handleMonth}>september</Dropdown.Item>
-                <Dropdown.Item eventKey="10" onSelect={this.handleMonth}>october</Dropdown.Item>
-                <Dropdown.Item eventKey="11" onSelect={this.handleMonth}>november</Dropdown.Item>
-                <Dropdown.Item eventKey="12" onSelect={this.handleMonth}>december</Dropdown.Item>
-            </DropdownButton>
-
-            <DropdownButton title="sort by price">
-                <Dropdown.Item eventKey="Ascending" onSelect={this.handlePrice}>lowest to highest</Dropdown.Item>
-                <Dropdown.Item eventKey="Descending" onSelect={this.handlePrice}>highest to lowest</Dropdown.Item>
-            </DropdownButton>
-
-            <Button variant="outline-primary" id="resetbutton" onClick={this.handleResetSearch}>reset search</Button>
+            <ButtonGroup>
+                <Button id={this.state.selectedMenu === "rarity" ? 'active-menu' : null} value="rarity"
+                onClick={this.onMenuChange}>RARITY</Button>
+                <Button id={this.state.selectedMenu === "month" ? 'active-menu' : null}  value="month"
+                onClick={this.onMenuChange}>MONTH</Button>
+            </ButtonGroup>
             </div>
 
-    </div>
+            <div
+            className={this.state.selectedMenu === 'none' ? 'row filter-menu-hidden' : 'row filter-bar'}>
+
+            <FilterMenu
+            selectedMenu={this.state.selectedMenu}
+            onRarityChange={this.handleRarity}
+            onMonthChange={this.handleMonth}
+            />
+
+
+            </div>
+            </div>
         );
     }
 }

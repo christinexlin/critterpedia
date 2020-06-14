@@ -1,37 +1,15 @@
-@font-face {
-    font-family: 'Carters Display';
-    src: local('Carters Display'), url(../fonts/CartersDisplay.ttf) format('ttf');
-}
-
-.btn {
-    font-family: 'Carters Display';
-}
-
-.btn:focus {
-    box-shadow: none !important;
-}
-
-.btn-primary:not(:disabled):not(.disabled).active {
-    background-color: #C2BCB3;
-    color: black;
-    border-bottom: black solid 2px;
-}
-
-.btn:active {
-    background-color: black !important;
-    color: #ECE8E2 !important;
-}
-
 body {
     background-color: #ECE8E2;
 }
 
-h1, h2, h4, h6 {
-    font-family: 'Carters Display';
+h6 {
+    margin-bottom: 0px;
 }
 
-h2 {
-    color: #C2BCB3;
+.no-results {
+    font-family: 'Marcellus', serif;
+    padding: 40px 20px 20px 20px;
+    text-align: center;
 }
 
 p {
@@ -39,167 +17,159 @@ p {
     margin-bottom: 0px;
 }
 
-.flex-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-#type {
-    background-color: #D8D1C7;
-    padding: 6px 8px 6px 6px;
-    margin-bottom: 0px;
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-
-#footer a {
-    color: black;
-}
-
-#footer a:hover {
-    text-decoration: none;
-    color: #92897F;
-}
-
-#header {
-    align-content: center;
-    justify-content: center;
-}
-
-#title {
-    font-size: 7vw;
-    padding: 80px 0px 40px 0px;
-    text-align: center;
-}
-
-@media screen and (min-width: 1001px) {
-    #title {
-        font-size: 4rem;
-    }
-}
-@media screen and (max-width: 1000px) {
-    #title {
-        font-size: 6vw;
-    }
-}
-
-#footer {
-    height: 15vh;
-    margin: auto;
-    display: block;
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-
-#footer h6, p {
-    margin: auto;
-}
-
-#footer p {
-    margin-top: 10px;
-    color: #92897F;
-}
-
-.face {
-    background-color: #D8D1C7;
-    padding: 6px 0px 6px 10px;
-    border-radius: .25rem 0px 0px .25rem;
-}
-
-.face svg {
-    margin-top: -4px;
-}
-
-.icon {
+.emoji {
     margin-right: 5px;
 }
 
-.catch.card {
-    border: solid black 2px;
-    border-radius: 0px;
+.subtitle {
+    font-style: italic;
+    font-weight: bold;
+}
+
+
+.app .row {
+    justify-content: center;
+    align-content: center;
+}
+
+.about {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.about .btn-primary {
+    margin: 10px 10px 10px 10px;
+}
+
+.about-page {
+    position: static;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    display: block;
+    text-align: center;
+}
+
+.about-div {
+    margin-top: 35vh;
+}
+
+.about-div p {
+    padding: 2px 10px 2px 10px;
+}
+
+.about-div .subtitle {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#home-button {
+    background-color: white;
+}
+
+#about-button {
+    background-color: #ECE8E2;
+}
+
+.hidden-page {
+    display: none;
+}
+
+#title {
+    font-family: 'Marcellus', serif;
+    padding: 80px 0px 60px 0px;
+}
+
+@media screen and (min-width: 800px) {
+    #title {
+        font-size: 3rem;
+    }
+}
+@media screen and (max-width: 799px) {
+    #title {
+        font-size: 5.5vw;
+    }
+}
+
+.filter-bar {
+    padding: 10px 10px 10px 10px;
+    width: 80%;
+    margin: auto;
+    border-radius: 0.25em;
 }
 
 .btn-group {
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+    box-shadow: none !important;
+}
+
+.filter-menu-hidden, .hidden-menu {
+    display: none;
+}
+
+#active-menu {
+    background-color: #A29D95;
+}
+
+.btn-primary {
+    font-family: 'Marcellus', serif;
+    background-color: #D8D1C7;
+    border: none;
+    color: black;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:hover  {
+    background-color: #A29D95;
+    border-color: black;
+    color: black;
+}
+
+.btn-group-toggle .btn-primary {
+    border-radius: 18px !important;
+    margin: 10px 5px 10px 5px;
+}
+
+.top-button-bar .btn-primary {
+    margin: 0px 10px 20px 10px;
+}
+
+.selectedMenu .btn-group {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.btn-primary {
-    font-family: 'Carters Display';
+input {
+    font-family: 'Marcellus', serif;
+    margin-left: 20px;
+    margin-right: 20px;
+    border: 0px;
+    padding: 5px 5px 5px 8px;
+    height: 36px;
     background-color: #D8D1C7;
-    border-left: none;
-    border-top: none;
-    border-right: none;
-    border-bottom: none;
-    color: black;
+    border-radius: 0.25em;
 }
 
-.btn-primary:hover {
-    background-color: black;
-    border-left: none;
-    border-top: none;
-    border-right: none;
-    border-bottom: none;
-    color: #ECE8E2;
-}
-
-#intro {
-    font-family: 'Nanum Myeongjo', serif;
-    font-weight: bold;
-    font-style: italic;
-    font-size: 2.5rem;
-    margin-left: -9px;
-}
-
-#dropdown-basic-button {
-    margin-left: 5px;
-    margin-right: 5px;
+input:focus {
+    background-color: #C2BCB3;
+    outline: none;
 }
 
 .list {
-    justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    padding: 20px 20px 20px 20px;
 }
 
 .card {
     background-color: #ECE8E2;
     border: #ECE8E2 solid 2px;
     text-align: center;
-    padding: 8px 8px 8px 8px;
-}
-
-.fish-image {
-    margin: auto;
-    padding-bottom: 10px;
-}
-
-.card-bug {
-    padding-left: 10px;
-    padding-right:10px;
-}
-
-.bug-image {
-    margin: auto;
-}
-
-
-.cardheader {
-    font-family: 'Nanum Myeongjo', serif;
-    background-color: #ECE8E2;
-    border: none;
-    display: none;
-}
-
-.card-header {
-    background-color: #ECE8E2;
-    border-bottom: black solid 2px;
-    margin-left: 20px;
-    margin-right: 20px;
+    padding: 5px 5px 5px 5px;
 }
 
 .card:hover {
@@ -207,186 +177,115 @@ p {
     border-radius: 5px;
 }
 
-input {
-    padding: 5px 10px 5px 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #D8D1C7;
-    outline: none;
-    font-family: 'Carters Display';
-    width: 250px;
+.card h6 {
+    font-family: 'Marcellus', serif;
+    padding: 5px 5px 5px 5px;
 }
 
-input:focus {
-    background-color: #C2BCB3;
-}
 
-#buttonbar {
-    margin: 10px 0px 20px -20px;
-    display: none;
-}
-
-#dropdown-basic-button {
-    background-color: white;
-    color: black;
-    border-radius: 0px;
-    border: black solid 1px;
-    font-family: 'Nanum Myeongjo', serif;
-}
-
-#resetbutton {
-    background-color: black;
-    color: #ECE8E2;
-    border: none;
-    margin: 0px 15px 10px 15px;
-}
-
-#searchbar[type=text] {
-  transition: width 0.4s ease-in-out;
-}
-
-#searchbar[type=text]:focus {
+.bug-image, .fish-image {
+    margin: auto;
 }
 
 .modal-content {
-    border: none;
     background-color: #ECE8E2;
-    max-width: 800px;
-    justify-content: flex-start;
+    border: 0px;
 }
 
-.popup-description {
-    background-color: #D8D1C7;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    padding-top: 10px;
-    padding: 20px 20px 15px 20px;
+.modal-content .container {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
-.modal-content .col-lg-4 {
+.header h4 {
+    font-family: 'Marcellus', serif;
+}
+
+.modal-content img {
+    width: 100%;
+    object-fit: contain;
+    padding: 10px 10px 10px 10px;
+}
+
+.modal-content .col-lg-5 {
     padding-left: 0px;
     padding-right: 0px;
+    display: flex;
+    align-items: center;
 }
 
-.modal-img {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    align-content: center;
+.modal-content .col-lg-7 {
+    padding-left: 0px;
+    padding-right: 0px;
+    border-left: solid black 1px;
+    margin-left: -1px;
+}
+
+.modal-content .row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.critter-popup {
+    border: solid black 1px;
+}
+
+.popup-info {
+    display: block;
+}
+
+.modal-content .col-xs-4 {
+    padding-right: 20px;
+}
+
+.header, .description {
     padding: 15px 15px 15px 15px;
 }
 
-.modal-body h4 {
-    padding-top: 10px;
-    margin-bottom: 2px;
-}
-
-.modal-body h6 {
-    margin-bottom: 0px;
-}
-
-.popup-image {
-    width: 100%;
-    object-fit: contain;
-}
-
-.popup-info-row {
-    background-color: #D8D1C7;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0px 0px 0px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.popup-info-subrow {
-    padding: 0px 0px 5px 0px;
-    margin-right: 0px;
-    margin-left: 0px;
-    align-content: center;
-}
-
-.catchphrase {
-    font-weight: bold;
-    font-style: italic;
-    margin-bottom: 10px;
-}
-
-.subrow-top {
-    border-radius: 5px 5px 0px 0px;
-    padding-bottom: 0px;
-}
-
-.subrow-bottom {
-    border-radius: 0px 0px 5px 5px;
-
-}
-
-#popup-header {
-    margin-bottom: 8px;
-}
-
-#popup-information {
-    display: inline-block;
-    flex-wrap: nowrap;
-    width: 100%;
-    margin-left: 0px;
-    margin-right: 0px;
-}
-
-.popup-header {
-    display: inline-block;
-    flex-wrap: nowrap;
-}
-#notes {
-    margin-left: 0px;
-    margin-right: 0px;
-}
-
-#notes svg {
-    margin-left: 5px;
-    margin-bottom: 5px;
-}
-.subtitle {
-    padding-right: 20px;
-    margin-top: -3px;
-    padding-left: 3px;
-}
-
 .header {
-    padding-left: 18px;
-    padding-right: 13px;
+    margin-top: -1px;
+    border-top: solid black 1px;
+    border-bottom: solid black 1px;
 }
 
-.filter-bar {
-    padding-bottom: 20px;
-    justify-content: center;
+#label {
+    font-family: 'Marcellus', serif;
+    font-size: 0.9rem;
+    margin-top: 2px;
+    margin-bottom: 3px;
 }
 
-.col-lg-6 {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    padding-bottom: 10px;
+.notes {
+    padding: 15px 15px 15px 15px;
+    border-top: solid black 1px;
 }
 
-.dropdown {
-    margin: 0px 10px 10px 10px;
+#close-button {
+    margin: auto;
+    background-color: #ECE8E2;
 }
 
-.show .btn {
-    background-color: black !important;
-    color: #ECE8E2 !important;
+#home-button, #about-button, #close-button {
+    border-bottom: solid black 1px;
+    border-radius: 0px;
+    padding: 0px 0px 0px 0px;
+    margin-bottom: 3px;
 }
 
-.dropdown-menu {
-    font-family: 'Carters Display';
-    background-color: #D8D1C7;
-    border: #D8D1C7 solid 1px;
+#home-button, #about-button {
+    margin: 20px 20px 20px 20px;
 }
 
-.no-results {
-    justify-content: center;
-    padding-top: 20px;
+#footer {
+    padding: 60px 30px 60px 30px;
+    text-align: center;
+}
+
+.about-div a {
+    color: black;
+}
+
+.about-div a:hover {
+    text-decoration: none;
+    color: #92897F;
 }
