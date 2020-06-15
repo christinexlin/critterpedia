@@ -7,7 +7,8 @@ class SearchBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedMenu: 'none'
+            selectedMenu: 'none',
+            key: 1
         }
     }
 
@@ -32,6 +33,14 @@ class SearchBar extends Component {
     handleTypeChange = () => {
         this.props.onTypeChange();
     }
+    handlePrice = (eventKey) => {this.props.onPriceChange(eventKey);}
+
+    handleResetSearch = () => {
+        this.props.onResetSearch();
+        this.setState({
+            key: this.state.key + 1
+        });
+    }
 
     render() {
         return (
@@ -53,6 +62,11 @@ class SearchBar extends Component {
             {this.props.hemisphere.toUpperCase()} HEMISPHERE
             </Button>
 
+            <DropdownButton title="SORT BY PRICE">
+                <Dropdown.Item eventKey="Ascending" onSelect={this.handlePrice}>LOWEST TO HIGHEST</Dropdown.Item>
+                <Dropdown.Item eventKey="Descending" onSelect={this.handlePrice}>HIGHEST TO LOWEST</Dropdown.Item>
+            </DropdownButton>
+
             <input type="text" placeholder="SEARCH" value={this.props.filterText} onChange={this.handleFilterText}/>
 
             </div>
@@ -64,6 +78,9 @@ class SearchBar extends Component {
                 <Button id={this.state.selectedMenu === "month" ? 'active-menu' : null}  value="month"
                 onClick={this.onMenuChange}>MONTH</Button>
             </ButtonGroup>
+
+            <Button id="reset-button" onClick={this.handleResetSearch}>CLEAR</Button>
+
             </div>
 
             <div
@@ -73,6 +90,7 @@ class SearchBar extends Component {
             selectedMenu={this.state.selectedMenu}
             onRarityChange={this.handleRarity}
             onMonthChange={this.handleMonth}
+            key={this.state.key}
             />
 
 

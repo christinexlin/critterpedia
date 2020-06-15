@@ -90,6 +90,9 @@ class Popup extends Component {
                     </div>
                 </div>
                 </div>
+                <div className="row">
+                <Button id="close-button" onClick={this.props.handleClose}>CLOSE</Button>
+                </div>
                 </Modal.Body>
             </Modal>
             );

@@ -41,7 +41,11 @@ class List extends Component {
 
     render() {
         let results;
-        let myList = this.props.items.filter(this.filterbySearch).filter(this.filterbyRarity)
+        let myList = this.props.items.sort((a,b) => {
+            return a.name["name-USen"].localeCompare(b.name["name-USen"]);
+        });
+
+        myList = myList.filter(this.filterbySearch).filter(this.filterbyRarity)
         .filter(this.filterbyMonth);
 
         if (this.props.price === 'Ascending') {

@@ -20,12 +20,23 @@ class FilteredList extends Component {
     handleRarity = (rarity) => {this.setState({rarity: rarity});}
     handleMonth = (month) => {this.setState({month: month});}
     handleType = () => {this.props.handleType()}
+    handlePrice = (price) => {this.setState({ price: price });}
     switchHemisphere = () => {
         if (this.state.hemisphere === 'Northern') {
             this.setState({hemisphere: 'Southern'});
         } else {
             this.setState({hemisphere: 'Northern'});
         }
+    }
+
+    handleResetSearch = () => {
+        this.setState({
+            filterText: '',
+            rarity: [],
+            price: '',
+            popup: false,
+            month: []
+        });
     }
 
     render() {
@@ -37,6 +48,8 @@ class FilteredList extends Component {
                 onHemisphereChange={this.switchHemisphere}
                 onTypeChange={this.handleType}
                 onMonthChange={this.handleMonth}
+                onResetSearch={this.handleResetSearch}
+                onPriceChange={this.handlePrice}
                 type={this.props.type}
                 hemisphere={this.state.hemisphere}
             />
@@ -47,6 +60,7 @@ class FilteredList extends Component {
                 hemisphere={this.state.hemisphere}
                 type={this.props.type}
                 month={this.state.month}
+                price={this.state.price}
             />
         </div>
         );

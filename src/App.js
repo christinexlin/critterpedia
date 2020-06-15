@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import FilteredList from './components/FilteredList';
+import ScrollToTop from './components/ScrollToTop';
 import './components/List.css';
 import { Button, Modal } from "react-bootstrap";
 
@@ -40,10 +41,13 @@ class App extends Component {
                     <div className="about-div">
                         <p id="credit">by <a href="https://www.christine-lin.com/">christine lin</a></p>
                         <p className="subtitle" id="site-description">an unofficial field guide to bugs and fish in Animal Crossing New Horizons</p>
-                        <p id="credit">questions or feedback?</p>
+                        <p id="credit">questions or feedback?
+                        <span className="emoji" id="wave" role="img" aria-label="waving hand">
+                        {String.fromCodePoint('0x1F44B')}
+                        </span> </p>
                         <p>talk to me on <a href="https://twitter.com/christinexlin">twitter</a>!</p>
                     </div>
-                    <Button id="home-button" onClick={this.handleAbout}>BACK HOME</Button>
+                    <Button id="home-button" onClick={this.handleAbout}>BACK</Button>
                 </div>
             </div>
 
@@ -58,6 +62,7 @@ class App extends Component {
                 />
                 <div id="footer">
                 </div>
+                <ScrollToTop />
             </div>
          </div>
         );

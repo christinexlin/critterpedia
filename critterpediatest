@@ -156,10 +156,7 @@ handleMonth = (month) => {
     <Dropdown.Item eventKey="12" onSelect={this.handleMonth}>december</Dropdown.Item>
 </DropdownButton>
 
-<DropdownButton title="sort by price">
-    <Dropdown.Item eventKey="Ascending" onSelect={this.handlePrice}>lowest to highest</Dropdown.Item>
-    <Dropdown.Item eventKey="Descending" onSelect={this.handlePrice}>highest to lowest</Dropdown.Item>
-</DropdownButton>
+
 
 <Button variant="outline-primary" id="resetbutton" onClick={this.handleResetSearch}>RESET SEARCH</Button>
 </div>

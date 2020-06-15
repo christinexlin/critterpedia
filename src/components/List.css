@@ -12,6 +12,10 @@ h6 {
     text-align: center;
 }
 
+#root h4 {
+    font-family: 'Marcellus', serif;
+}
+
 p {
     font-family: 'Crimson Pro', serif;
     margin-bottom: 0px;
@@ -72,18 +76,22 @@ p {
     background-color: #ECE8E2;
 }
 
+#wave {
+    margin-left: 3px;
+}
+
 .hidden-page {
     display: none;
 }
 
 #title {
     font-family: 'Marcellus', serif;
-    padding: 80px 0px 60px 0px;
+    padding: 20px 0px 40px 0px;
 }
 
 @media screen and (min-width: 800px) {
     #title {
-        font-size: 3rem;
+        font-size: 3.5rem;
     }
 }
 @media screen and (max-width: 799px) {
@@ -159,6 +167,21 @@ input {
 input:focus {
     background-color: #C2BCB3;
     outline: none;
+}
+
+.dropdown-menu {
+    background-color: #D8D1C7;
+    font-family: 'Marcellus', serif;
+    border: none;
+}
+
+.dropdown-item:hover {
+    background-color: #A29D95;
+}
+
+#reset-button {
+    color: white;
+    background-color: black;
 }
 
 .list {
@@ -288,4 +311,17 @@ input:focus {
 .about-div a:hover {
     text-decoration: none;
     color: #92897F;
+}
+
+#scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 30px;
+    background-color: white;
+    color: white;
+}
+
+#scroll-to-top .emoji {
+    font-size: 1.5rem;
 }
