@@ -12,6 +12,12 @@ h6 {
     text-align: center;
 }
 
+.row.description {
+    height: 220px;
+    align-items: center;
+    justify-content: center;
+}
+
 #root h4 {
     font-family: 'Marcellus', serif;
 }
@@ -213,11 +219,49 @@ input:focus {
 .modal-content {
     background-color: #ECE8E2;
     border: 0px;
+    max-height: 100vh;
 }
 
 .modal-content .container {
     padding-top: 15px;
     padding-bottom: 15px;
+}
+
+@media screen and (max-width: 999px) {
+    .modal-content img {
+        height: 200px;
+    }
+    .row.description {
+        height: 195px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .list.row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media screen and (max-width: 999px) and (min-width: 750px) {
+    .list.row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (max-width: 749px) and (min-width: 580px) {
+    .list.row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 579px) and (min-width: 360px) {
+    .list.row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .header h4 {
@@ -258,7 +302,7 @@ input:focus {
 }
 
 .modal-content .col-xs-4 {
-    padding-right: 20px;
+    padding-right: 30px;
 }
 
 .header, .description {
