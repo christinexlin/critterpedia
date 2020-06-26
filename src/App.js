@@ -39,21 +39,31 @@ class App extends Component {
                 <Button className={this.state.about ? 'hidden-page' : null} id='about-button' onClick={this.handleAbout}>ABOUT</Button>
                 <div className={this.state.about ? 'about-page' : 'hidden-page'}>
                     <div className="about-div">
-                        <p id="credit">by <a href="https://www.christine-lin.com/">christine lin</a></p>
-                        <p className="subtitle" id="site-description">an unofficial field guide to bugs and fish in Animal Crossing New Horizons</p>
-                        <p id="credit">questions or feedback?
-                        <span className="emoji" id="wave" role="img" aria-label="waving hand">
-                        {String.fromCodePoint('0x1F44B')}
-                        </span> </p>
-                        <p>talk to me on <a href="https://twitter.com/christinexlin">twitter</a>!</p>
+                        <div>
+                        <div className="description-div">
+                            <h6 id="site-description">Blather's Critterpedia is an unofficial field
+                            guide to bugs and fish in Animal Crossing New Horizons.</h6>
+                        </div>
+                        <div className="description-div">
+                            <h6>Made with
+                            <span className="emoji" role="img" aria-label="waving hand">
+                            {String.fromCodePoint('0x1F5A4')}
+                            </span> by <a href="http://christinelin.design/">Christine Lin</a>.
+                            </h6>
+                        </div>
+                            <div>
+                            <h6 id="credit">Questions or feedback?</h6>
+                            <h6>Talk to me on <a href="https://twitter.com/christinexlin">Twitter</a>!</h6>
+                            <Button id="home-button" onClick={this.handleAbout}>BACK</Button>
+                            </div>
+                        </div>
                     </div>
-                    <Button id="home-button" onClick={this.handleAbout}>BACK</Button>
                 </div>
             </div>
 
             <div className={this.state.about ? 'hidden-page' : "container app"}>
                 <div className="row" id="header">
-                    <h1 id="title">BLATHER'S CRITTERPEDIA</h1>
+                    <h1 id="title">Blather's Critterpedia</h1>
                 </div>
                 <FilteredList
                 type={this.state.type}
