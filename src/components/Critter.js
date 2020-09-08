@@ -24,7 +24,9 @@ class Critter extends Component {
                 width={this.props.type === 'fish' ? '200px' : '170px'}
                 alt={this.props.critter["file-name"]}
                 src={this.props.critter["image_uri"]}/>
-                <h6 className="critter-name">{this.props.critter.name["name-USen"].toUpperCase()}</h6>
+                <div className="critter-name">
+                <h6>{this.props.critter.name["name-USen"]}</h6>
+                </div>
             </Card>
 
             {this.state.popup ?

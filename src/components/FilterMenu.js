@@ -13,31 +13,30 @@ class FilterMenu extends Component {
 
     render() {
         return (
-            <div className="row">
-
+            <div>
             <div className={this.props.selectedMenu === 'rarity' ? 'selectedMenu' : 'hidden-menu'}>
             <ToggleButtonGroup type="checkbox" defaultValue={[]} onChange={this.onRarityChange}>
-                <ToggleButton value="Common">COMMON</ToggleButton>
-                <ToggleButton value="Uncommon">UNCOMMON</ToggleButton>
-                <ToggleButton value="Rare">RARE</ToggleButton>
-                <ToggleButton value="Ultra-rare">ULTRA-RARE</ToggleButton>
+                <ToggleButton value="Common">Common</ToggleButton>
+                <ToggleButton value="Uncommon">Uncommon</ToggleButton>
+                <ToggleButton value="Rare">Rare</ToggleButton>
+                <ToggleButton value="Ultra-rare">Ultra-rare</ToggleButton>
             </ToggleButtonGroup>
             </div>
 
             <div className={this.props.selectedMenu === 'month' ? 'selectedMenu' : 'hidden-menu'}>
             <ToggleButtonGroup type="checkbox" defaultValue={[]} onChange={this.onMonthChange}>
-                <ToggleButton value={1}>JAN</ToggleButton>
-                <ToggleButton value={2}>FEB</ToggleButton>
-                <ToggleButton value={3}>MAR</ToggleButton>
-                <ToggleButton value={4}>APR</ToggleButton>
-                <ToggleButton value={5}>MAY</ToggleButton>
-                <ToggleButton value={6}>JUNE</ToggleButton>
-                <ToggleButton value={7}>JULY</ToggleButton>
-                <ToggleButton value={8}>AUG</ToggleButton>
-                <ToggleButton value={9}>SEP</ToggleButton>
-                <ToggleButton value={10}>OCT</ToggleButton>
-                <ToggleButton value={11}>NOV</ToggleButton>
-                <ToggleButton value={12}>DEC</ToggleButton>
+                <ToggleButton value={1}>Jan</ToggleButton>
+                <ToggleButton value={2}>Feb</ToggleButton>
+                <ToggleButton value={3}>Mar</ToggleButton>
+                <ToggleButton value={4}>Apr</ToggleButton>
+                <ToggleButton value={5}>May</ToggleButton>
+                <ToggleButton value={6}>June</ToggleButton>
+                <ToggleButton value={7}>July</ToggleButton>
+                <ToggleButton value={8}>Aug</ToggleButton>
+                <ToggleButton value={9}>Sep</ToggleButton>
+                <ToggleButton value={10}>Oct</ToggleButton>
+                <ToggleButton value={11}>Nov</ToggleButton>
+                <ToggleButton value={12}>Dec</ToggleButton>
             </ToggleButtonGroup>
             </div>
 

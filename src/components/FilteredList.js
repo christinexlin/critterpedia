@@ -19,7 +19,7 @@ class FilteredList extends Component {
     handleFilterText = (filterText) => {this.setState({ filterText: filterText} );}
     handleRarity = (rarity) => {this.setState({rarity: rarity});}
     handleMonth = (month) => {this.setState({month: month});}
-    handleType = () => {this.props.handleType()}
+    handleType = (type) => {this.props.handleType(type)}
     handlePrice = (price) => {this.setState({ price: price });}
     switchHemisphere = () => {
         if (this.state.hemisphere === 'Northern') {
@@ -41,6 +41,7 @@ class FilteredList extends Component {
 
     render() {
         return (
+        <div className="filtered-list">
         <div>
             <SearchBar
                 onFilterTextChange={this.handleFilterText}
@@ -53,6 +54,7 @@ class FilteredList extends Component {
                 type={this.props.type}
                 hemisphere={this.state.hemisphere}
             />
+            </div>
             <List
                 items={this.props.items}
                 filterText={this.state.filterText}
@@ -61,6 +63,7 @@ class FilteredList extends Component {
                 type={this.props.type}
                 month={this.state.month}
                 price={this.state.price}
+                className='critter-list'
             />
         </div>
         );

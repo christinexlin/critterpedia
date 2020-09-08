@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { DropdownButton, Dropdown, Button, ButtonGroup, ToggleButtonGroup, ToggleButton } from "react-bootstrap";
+import { Container, Navbar, DropdownButton, Dropdown, Button } from "react-bootstrap";
 import './List.css';
 import FilterMenu from './FilterMenu';
 
@@ -30,8 +30,8 @@ class SearchBar extends Component {
     handleMonth = (value) => {
         this.props.onMonthChange(value);
     }
-    handleTypeChange = () => {
-        this.props.onTypeChange();
+    handleTypeChange = (eventKey) => {
+        this.props.onTypeChange(eventKey);
     }
     handlePrice = (eventKey) => {this.props.onPriceChange(eventKey);}
 
@@ -44,58 +44,78 @@ class SearchBar extends Component {
 
     render() {
         return (
-            <div>
-
-
-            <div className="row filter-bar top-button-bar">
-            <Button onClick={this.handleTypeChange}>
-            <span className="emoji" role="img" aria-label="fish">
-            {this.props.type === 'fish' ? String.fromCodePoint('0x1F41F') : String.fromCodePoint('0x1F41C')}
-            </span>
-            {this.props.type.toUpperCase()}
-            </Button>
-
-            <Button onClick={this.handleHemisphere} value={this.props.hemisphere}>
-            <span className="emoji" role="img" aria-label="ant">
-            {String.fromCodePoint('0x1F4CD')}
-            </span>
-            {this.props.hemisphere.toUpperCase()} HEMISPHERE
-            </Button>
-
-            <DropdownButton title="SORT BY PRICE">
-                <Dropdown.Item eventKey="Ascending" onSelect={this.handlePrice}>LOWEST TO HIGHEST</Dropdown.Item>
-                <Dropdown.Item eventKey="Descending" onSelect={this.handlePrice}>HIGHEST TO LOWEST</Dropdown.Item>
-            </DropdownButton>
-
-            <input type="text" placeholder="SEARCH" value={this.props.filterText} onChange={this.handleFilterText}/>
-
+            <Container fluid>
+            <Navbar bg="light" fixed="top" expand="lg">
+            <div className="title">
+                <h5>Blather's Critterpedia</h5>
             </div>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse>
+                <DropdownButton title="Critter Type">
+                    <Dropdown.Item
+                    eventKey="bugs" onSelect={this.handleTypeChange}>
+                    <span className="emoji" role="img" aria-label="ant">
+                    {String.fromCodePoint('0x1F41C')}
+                    </span>
+                    Bugs
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                    eventKey="fish" onSelect={this.handleTypeChange}>
+                    <span className="emoji" role="img" aria-label="ant">
+                    {String.fromCodePoint('0x1F41F')}
+                    </span>
+                    Fish
+                    </Dropdown.Item>
+                </DropdownButton>
 
-            <div className="row filter-bar">
-            <ButtonGroup>
+                <DropdownButton title="Hemisphere">
+                    <Dropdown.Item
+                    eventKey="Northern" onSelect={this.handleHemisphere}>
+                    Northern
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                    eventKey="Southern" onSelect={this.handleHemisphere}>
+                    Southern
+                    </Dropdown.Item>
+                </DropdownButton>
+
                 <Button id={this.state.selectedMenu === "rarity" ? 'active-menu' : null} value="rarity"
-                onClick={this.onMenuChange}>RARITY</Button>
+                onClick={this.onMenuChange}>Rarity</Button>
+
                 <Button id={this.state.selectedMenu === "month" ? 'active-menu' : null}  value="month"
-                onClick={this.onMenuChange}>MONTH</Button>
-            </ButtonGroup>
+                onClick={this.onMenuChange}>Month</Button>
 
-            <Button id="reset-button" onClick={this.handleResetSearch}>CLEAR</Button>
+                <Button id="reset-button" onClick={this.handleResetSearch}>Clear</Button>
 
-            </div>
+                <DropdownButton title="Sort by price">
+                    <Dropdown.Item
+                    eventKey="Ascending" onSelect={this.handlePrice}>
+                    Lowest to highest
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                    eventKey="Descending" onSelect={this.handlePrice}>
+                    Highest to lowest
+                    </Dropdown.Item>
+                </DropdownButton>
 
-            <div
-            className={this.state.selectedMenu === 'none' ? 'row filter-menu-hidden' : 'row filter-bar'}>
+                <input type="text" placeholder="Search"
+                value={this.props.filterText} onChange={this.handleFilterText}/>
 
-            <FilterMenu
-            selectedMenu={this.state.selectedMenu}
-            onRarityChange={this.handleRarity}
-            onMonthChange={this.handleMonth}
-            key={this.state.key}
-            />
+                <div className=" filter-bar top-button-bar">
 
-
-            </div>
-            </div>
+                <div
+                className={this.state.selectedMenu === 'none' ? 'row filter-menu-hidden' : 'filter-bar'}>
+                    <FilterMenu
+                        selectedMenu={this.state.selectedMenu}
+                        onRarityChange={this.handleRarity}
+                        onMonthChange={this.handleMonth}
+                        key={this.state.key}
+                    />
+                </div>
+    </div>
+    </Navbar.Collapse>
+            </Navbar>
+            </Container>
         );
     }
 }

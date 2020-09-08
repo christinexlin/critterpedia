@@ -110,7 +110,7 @@ class Popup extends Component {
 
                     <div className="col-lg-7">
                     <div className="header">
-                        <h4>{this.props.critter.name["name-USen"].toUpperCase()}</h4>
+                        <h4>{this.props.critter.name["name-USen"]}</h4>
                         <p className="subtitle">{this.props.critter["catch-phrase"]}</p>
                     </div>
 
@@ -133,12 +133,9 @@ class Popup extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="row notes">
-                        <p>{this.props.critter["museum-phrase"]}</p>
-                    </div>
                 </div>
                 </div>
-                <div className="row">
+                <div className="row" close-row>
                 <Button id="close-button" onClick={this.props.handleClose}>CLOSE</Button>
                 </div>
                 </Modal.Body>
