@@ -38,6 +38,9 @@ class List extends Component {
             }
         }
     }
+    handleAdd = name => {
+        this.props.handleAdd(name);
+    }
 
     render() {
         let results;
@@ -66,7 +69,11 @@ class List extends Component {
             <div className="row list">
             {myList.map(item => {
                 return (
-                    <Critter critter={item} key={item["file-name"]} type={this.props.type}/>
+                    <Critter
+                    critter={item} key={item.name["name-USen"]} type={this.props.type}
+                    handleAdd={this.handleAdd}
+                    handleDelete={(name) => {this.props.handleDelete(name)}}
+                    />
                 )
             })}
             </div>;

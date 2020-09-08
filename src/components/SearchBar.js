@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Navbar, DropdownButton, Dropdown, Button } from "react-bootstrap";
+import { Container, Navbar, DropdownButton, Dropdown, Button, ListGroup } from "react-bootstrap";
 import './List.css';
 import FilterMenu from './FilterMenu';
 
@@ -8,7 +8,7 @@ class SearchBar extends Component {
         super(props);
         this.state = {
             selectedMenu: 'none',
-            key: 1
+            key: 1,
         }
     }
 

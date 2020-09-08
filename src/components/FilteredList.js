@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import SearchBar from './SearchBar';
 import List from './List';
+import SavedList from './SavedList';
 import './List.css';
 
 class FilteredList extends Component {
@@ -12,7 +13,8 @@ class FilteredList extends Component {
             hemisphere: 'Northern',
             price: '',
             popup: false,
-            month: []
+            month: [],
+            savedList: [],
         };
     }
 
@@ -39,10 +41,15 @@ class FilteredList extends Component {
         });
     }
 
+    handleAdd = (name) => {
+        var newList = this.state.savedList;
+        newList.push(name);
+        this.setState({savedList: newList});
+    }
+
     render() {
         return (
         <div className="filtered-list">
-        <div>
             <SearchBar
                 onFilterTextChange={this.handleFilterText}
                 onRarityChange={this.handleRarity}
@@ -54,7 +61,7 @@ class FilteredList extends Component {
                 type={this.props.type}
                 hemisphere={this.state.hemisphere}
             />
-            </div>
+            <SavedList items={this.state.savedList} />
             <List
                 items={this.props.items}
                 filterText={this.state.filterText}
@@ -63,7 +70,8 @@ class FilteredList extends Component {
                 type={this.props.type}
                 month={this.state.month}
                 price={this.state.price}
-                className='critter-list'
+                handleAdd={this.handleAdd}
+                handleDelete={(name) => {this.props.handleDelete(name)}}
             />
         </div>
         );
